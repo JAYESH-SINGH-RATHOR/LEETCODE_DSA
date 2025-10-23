@@ -1,28 +1,18 @@
 class Solution {
     public int maxAbsoluteSum(int[] nums) {
-        int maxSoFar = 0;  // biggest positive sum ending here
-        int minSoFar = 0;  // biggest negative sum ending here
-        int result = 0;    // final answer
+        int n = nums.length;
+        if (n == 0) return 0;
 
-        for (int i = 0; i < nums.length; i++) {
-            // Update max positive sum ending here
-            if (maxSoFar + nums[i] > nums[i]) {
-                maxSoFar = maxSoFar + nums[i];
-            } else {
-                maxSoFar = nums[i];
-            }
+        int maxSum = 0;   // max subarray sum ending here
+        int minSum = 0;   // min subarray sum ending here
+        int res = 0;      // result
 
-            // Update max negative sum ending here
-            if (minSoFar + nums[i] < nums[i]) {
-                minSoFar = minSoFar + nums[i];
-            } else {
-                minSoFar = nums[i];
-            }
-
-            // Update final answer with the biggest absolute sum
-            result = Math.max(result, Math.max(maxSoFar, -minSoFar));
+        for (int i = 0; i < n; i++) {
+            maxSum = Math.max(nums[i], maxSum + nums[i]);
+            minSum = Math.min(nums[i], minSum + nums[i]);
+            res = Math.max(res, Math.max(maxSum, -minSum));
         }
 
-        return result;
+        return res;
     }
 }
