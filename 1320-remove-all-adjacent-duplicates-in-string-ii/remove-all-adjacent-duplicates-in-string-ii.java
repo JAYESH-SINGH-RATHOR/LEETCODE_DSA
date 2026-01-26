@@ -10,25 +10,19 @@ class pair {
 
 class Solution {
     public String removeDuplicates(String s, int k) {
-
         Stack<pair> st = new Stack<>();
-
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
-
             if (!st.isEmpty() && st.peek().ch == ch) {
                 st.peek().freq++;
-
                 if (st.peek().freq == k) {
-                    st.pop();   // remove k duplicates
+                    st.pop();   
                 }
             } else {
                 st.push(new pair(1, ch));
             }
         }
-
         StringBuilder res = new StringBuilder();
-
         while (!st.isEmpty()) {
             int freq = st.peek().freq;
             char ch = st.peek().ch;
@@ -37,7 +31,6 @@ class Solution {
                 res.append(ch);
             }
         }
-
         return res.reverse().toString();
     }
 }
