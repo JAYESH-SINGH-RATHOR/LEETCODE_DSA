@@ -11,41 +11,19 @@
 
 public class Solution {
     public boolean isPalindrome(ListNode head) {
-        if (head == null || head.next == null) return true;
-
-        // Step 1: Find the middle
-        ListNode slow = head;
-        ListNode fast = head;
-
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-
-        // Step 2: Reverse the second half
-        ListNode secondHalf = reverseList(slow);
-
-        // Step 3: Compare both halves
-        ListNode firstHalf = head;
-        while (secondHalf != null) {
-            if (firstHalf.val != secondHalf.val) {
+        Stack<Integer> st = new Stack<>();
+            ListNode temp = head;
+       while(temp != null){
+        st.push(temp.val);
+        temp = temp.next;
+       }
+        temp = head;
+        while(temp != null){
+            if(temp.val != st.pop()){
                 return false;
             }
-            firstHalf = firstHalf.next;
-            secondHalf = secondHalf.next;
+            temp = temp.next;
         }
-
-        return true;
-    }
-
-    public ListNode reverseList(ListNode head) {
-        ListNode prev = null;
-        while (head != null) {
-            ListNode nextTemp = head.next;
-            head.next = prev;
-            prev = head;
-            head = nextTemp;
-        }
-        return prev;
+    return true;          
     }
 }
