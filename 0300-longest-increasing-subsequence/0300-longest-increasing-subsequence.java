@@ -1,30 +1,47 @@
 class Solution {
     public int lengthOfLIS(int[] nums) {
-        int  n = nums.length;
+        // int  n = nums.length;
 
-        // set is used for to store the unique elements in the arrays
+        // // set is used for to store the unique elements in the arrays
 
-        HashSet<Integer>set = new HashSet<>();
-        for(int i = 0; i < n; i++){
-            set.add(nums[i]);
-        }
-        int m = set.size();
-        int dp[][] = new int[n + 1][m  + 1]; 
-        int arr[] = new int[m];
-        int j = 0;
-        for(int i : set){
-            arr[j++] = i;
-        }
-        Arrays.sort(arr);
-        for(int i = 1; i <= n; i++){
-            for(int k = 1; k <= m; k++){
-                if(nums[i - 1] == arr[k - 1]){
-                    dp[i][k] = 1 + dp[i - 1][k - 1];
-                }else{
-                    dp[i][k] = Math.max(dp[i - 1][k] , dp[i][k - 1]);
+        // HashSet<Integer>set = new HashSet<>();
+        // for(int i = 0; i < n; i++){
+        //     set.add(nums[i]);
+        // }
+        // int m = set.size();
+        // int dp[][] = new int[n + 1][m  + 1]; 
+        // int arr[] = new int[m];
+        // int j = 0;
+        // for(int i : set){
+        //     arr[j++] = i;
+        // }
+        // Arrays.sort(arr);
+        // for(int i = 1; i <= n; i++){
+        //     for(int k = 1; k <= m; k++){
+        //         if(nums[i - 1] == arr[k - 1]){
+        //             dp[i][k] = 1 + dp[i - 1][k - 1];
+        //         }else{
+        //             dp[i][k] = Math.max(dp[i - 1][k] , dp[i][k - 1]);
+        //         }
+        //     }
+        // }
+        // return dp[n][m];
+
+        return lis2(nums);
+    }
+    int lis2(int nums[]){
+        int n = nums.length;
+        int dp[] = new int[n];
+        Arrays.fill(dp , 1);
+        int max = 1;
+        for(int i = 1; i < n; i++){
+            for(int j = 0; j < i; j++){
+                if(nums[i] > nums[j]){
+                    dp[i] = Math.max(dp[i] , dp[j] + 1);
                 }
             }
+            max = Math.max(max , dp[i]);
         }
-        return dp[n][m];
-    }
+        return max;
+            }
 }
