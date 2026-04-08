@@ -8,7 +8,7 @@ class Solution {
         if(m == 0){
             return str1;
         }
-
+        // its only for the building the LCS Table 
         int dp[][] = new int[n + 1][m + 1];
 
         for(int i = 1; i <= n; i++){
@@ -20,6 +20,7 @@ class Solution {
                 }
             }
         }
+        // for finding the Shortest Common Supersequence 
        StringBuilder res = new StringBuilder();
        int i = n , j = m;
        while(i > 0 && j > 0){
