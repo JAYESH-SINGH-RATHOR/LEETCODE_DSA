@@ -15,28 +15,30 @@ class Solution {
             return null;
         }
 
-        ListNode temp = head;
-        int size = 0;
-        while(temp != null){
-            temp =  temp.next;
-            size++;
-        }
-
-        int mid = size / 2;
-        temp = head;
-        for(int i = 0; i < mid - 1; i++){
-            temp = temp.next;
-        } 
-        temp.next = temp.next.next;
-        return head;
-
-        // ListNode slow = head;
-        // ListNode fast = head;
-        // while(fast != null && fast.next != null){
-        //     fast = fast.next.next;
-        //     slow = slow.next;
+        // ListNode temp = head;
+        // int size = 0;
+        // while(temp != null){
+        //     temp =  temp.next;
+        //     size++;
         // }
-        // // slow = slow.next.next;
-        // return slow;
+
+        // int mid = size / 2;
+        // temp = head;
+        // for(int i = 0; i < mid - 1; i++){
+        //     temp = temp.next;
+        // } 
+        // temp.next = temp.next.next;
+        // return head;
+
+        ListNode slow = head;
+        ListNode fast = head;
+        ListNode prev = null;
+        while(fast != null && fast.next != null){
+            fast = fast.next.next;
+            prev = slow;
+            slow = slow.next;
+        }
+        prev.next = slow.next;
+        return head;
     }
 }
