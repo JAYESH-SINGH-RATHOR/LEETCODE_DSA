@@ -6,7 +6,6 @@ public class Solution {
             if(nums[i] != val){
                 nums[count++] = nums[i];
             }
-            // nums[i] = nums[i - 1];
         }
        return count;
     }
