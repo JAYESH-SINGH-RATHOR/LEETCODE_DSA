@@ -10,7 +10,7 @@ class Solution {
                 left++;
             }
             set.add(ch);
-            max = Math.max(max , i - left  + 1);
+            max = Math.max(max , i - left + 1);
         }
         return max;
     }
