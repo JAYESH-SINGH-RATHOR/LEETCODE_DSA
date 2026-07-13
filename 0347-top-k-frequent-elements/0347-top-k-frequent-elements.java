@@ -9,7 +9,8 @@ public class Solution {
             int freq = map.get(nums[i]);
             map.put(nums[i] , freq + 1);
         }
-PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> Integer.compare(map.get(a), map.get(b)));
+PriorityQueue<Integer> pq = new
+ PriorityQueue<>((a, b) -> Integer.compare(map.get(a), map.get(b)));
         for(int e : map.keySet()){
             pq.add(e);
             while(pq.size() > k){
