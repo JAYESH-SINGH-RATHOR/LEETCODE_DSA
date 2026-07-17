@@ -29,19 +29,19 @@ public class Solution {
             return 0;
         }
         Arrays.sort(nums);
-        int n = nums.length;
-        int count = 1;
-        int maxcount = 1;
-        for(int i = 1; i < n; i++){
-            int diff = 0;
-            diff = nums[i] - nums[i - 1];
-            if(diff == 1){
-                count++;
-                maxcount = Math.max(maxcount , count);
-            }else if(diff > 1){
-                count = 1;
-            }
+       int curr = 1;
+       int max = 1;
+       for(int i = 1; i < nums.length; i++){
+        if(nums[i] == nums[i - 1]){
+            continue;
         }
-        return maxcount;
+        if(nums[i] - nums[i - 1] == 1){
+            curr++;
+        }else{
+            curr = 1;
+        }
+        max = Math.max(curr , max);
+       }
+       return max;
     }
 }
