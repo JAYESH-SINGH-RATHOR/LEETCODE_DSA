@@ -4,24 +4,21 @@ class Solution {
         int right = s.length() - 1;
         while(left < right){
             if(s.charAt(left) != s.charAt(right)){
-                return canPalindrome(s , left + 1 , right) || canPalindrome(s , left , right - 1);
+               return canpalindrome(s , left + 1 , right) || canpalindrome(s , left , right - 1);
             }
-            left++;
-            right--;
+        left++;
+        right--;
         }
         return true;
     }
-    boolean canPalindrome(String s , int left , int right){
-        while(left < right){
-            if(s.charAt(left ) != s.charAt(right)){
-               return false;
-            }
+      boolean canpalindrome(String s , int left , int right){
+            while(left < right){
+                if(s.charAt(left) != s.charAt(right)){
+                    return false;
+                }
             left++;
             right--;
+            }
+            return true;
         }
-        return true;
-    }
-}
-
-
-
+ }
