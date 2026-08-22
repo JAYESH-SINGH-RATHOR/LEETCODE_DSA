@@ -30,37 +30,37 @@ class Solution {
       return new int[] {first , last};
     }
     int findFirst(int arr[] , int t){
-        int left = 0;
-        int right = arr.length - 1;
-        int ans = -1;
-        while(left <= right){
-            int mid = left + (right - left)/2;
+       int left = 0;
+       int right = arr.length - 1;
+            int ans = -1;
+       while(left <= right){
+            int mid = left + (right - left) / 2;
             if(arr[mid] == t){
                 ans = mid;
                 right = mid - 1;
-            }else if(arr[mid] < t){
-                left = mid + 1;
-            }else{
+            }else if(arr[mid] > t){
                 right = mid - 1;
+            }else{
+                left = mid + 1;
             }
-        }
-        return ans;
+       }
+       return ans;
     }
     int findLast(int arr[] , int t){
-        int left = 0;
-        int right = arr.length - 1;
-        int ans = -1;
-        while(left <= right){
-            int mid = left + (right - left)/2;
+       int left =  0;
+       int right = arr.length - 1;
+       int  ans = -1;
+       while(left <= right){
+            int mid = left + (right - left) /2;
             if(arr[mid] == t){
                 ans = mid;
                 left = mid + 1;
-            }else if(arr[mid] < t){
-                left = mid + 1;
-            }else{
+            }else if(arr[mid] > t){
                 right = mid - 1;
+            }else{
+                left = mid + 1;
             }
-        }
-        return ans;
+       }
+       return ans;
     }
 }
