@@ -8,19 +8,37 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+// class Solution {
+//     public ListNode removeElements(ListNode head, int val) {
+//         ListNode curr = head;
+//         while(head != null && head.val == val){
+//                 head = head.next;
+//         }
+//         while(curr != null && curr.next != null){
+//             if(curr.next.val == val){
+//                 curr.next = curr.next.next;
+//             }else{
+//                 curr= curr.next;
+//             }
+//         }
+//         return head;
+//     }
+// }
+
+// using dummy node concept // 
+
 class Solution {
     public ListNode removeElements(ListNode head, int val) {
-        ListNode curr = head;
-        while(head != null && head.val == val){
-                head = head.next;
-        }
-        while(curr != null && curr.next != null){
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode curr = dummy;
+        while(curr.next != null){
             if(curr.next.val == val){
                 curr.next = curr.next.next;
             }else{
-                curr= curr.next;
+                curr = curr.next;
             }
         }
-        return head;
+        return dummy.next;
     }
 }
