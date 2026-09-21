@@ -1,6 +1,6 @@
 class Solution {
     public int findPeakElement(int[] nums) {
-        Arrays.sort(nums);
+        // Arrays.sort(nums);
         int left = 0;
         int peak = 0;
         int right = nums.length - 1;
@@ -13,6 +13,6 @@ class Solution {
                 right= mid;
             }
         }
-        return peak;
+        return left;
     }
 }
