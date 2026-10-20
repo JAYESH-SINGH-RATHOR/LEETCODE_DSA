@@ -7,7 +7,7 @@ class Solution {
         }
         boolean visited[][] = new boolean[n][m];
         Queue<int[]>q = new LinkedList<>();
-        int dr[] = {-1 , 1 , 0 , 0 , -1 , 1 , 1 , 1};
+        int dr[] = {-1 , 1 , 0 , 0 , -1 , 1 , 1 , -1};
         int dc[] = {0 , 0 , -1 , 1 , -1  , 1, -1 , 1};
         visited[0][0] = true;
         q.add(new int[]{0 , 0 , 1});
