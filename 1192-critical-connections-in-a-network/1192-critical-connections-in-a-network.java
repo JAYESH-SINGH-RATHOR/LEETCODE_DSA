@@ -4,6 +4,7 @@ class Solution {
     List<List<Integer>> adj = new ArrayList<>();
         int low[] = new int[n];
         int dist[] = new int[n];
+        boolean visited[] = new boolean[n];
         List<List<Integer>> bridge = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             adj.add(new ArrayList<>());
@@ -15,8 +16,8 @@ class Solution {
             adj.get(v).add(u);
         }
         for (int i = 0; i < n; i++) {
-            if (dist[i] == 0) {
-                dfs(i, -1, adj, low, dist, bridge);
+            if (!visited[i]) {
+                dfs(i, -1, adj, low, dist, bridge , visited);
             }
         }
         return bridge;
@@ -24,15 +25,16 @@ class Solution {
     public void dfs(int curr, int parent,
                     List<List<Integer>> adj,
                     int low[], int dist[],
-                    List<List<Integer>> bridge) {
+                    List<List<Integer>> bridge , boolean visited[]) {
 
         low[curr] = dist[curr] = timer++;
+         visited[curr] = true;
         for (int e : adj.get(curr)) {
             if (e == parent) {
                 continue;
             }
-            if (dist[e] == 0) {
-                dfs(e, curr, adj, low, dist, bridge);
+            if (!visited[e]) {
+                dfs(e, curr, adj, low, dist, bridge , visited);
                 low[curr] = Math.min(low[curr], low[e]);
                 if (low[e] > dist[curr]) {
                     bridge.add(Arrays.asList(curr, e));
