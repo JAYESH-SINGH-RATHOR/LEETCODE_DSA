@@ -1,26 +1,32 @@
 class Solution {
     public int maxVowels(String s, int k) {
-        int max = 0;
-        int n = s.length();
         int count = 0;
+        int n = s.length();
+        int left = 0;
+        int maxvowel = 0;
         for(int i = 0; i < k; i++){
-            char ch = s.charAt(i);
-            if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'u' || ch == 'o'){
+             char ch = s.charAt(i);
+            if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u'){
                 count++;
             }
         }
-        max = Math.max(max , count);
-        for(int i = k; i < n; i++){
+         maxvowel = count;
+
+       for(int i = k; i < n; i++){
+            char leftChar = s.charAt(left);
+            if (leftChar == 'a' || leftChar == 'e' ||
+                leftChar == 'i' || leftChar == 'o' ||
+                leftChar == 'u') {
+                count--;
+            }
             char ch = s.charAt(i);
-            if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'u' || ch == 'o'){
+            if (ch == 'a' || ch == 'e' || ch == 'i' ||
+                ch == 'o' || ch == 'u') {
                 count++;
             }
-            char remove = s.charAt(i -  k);
-             if(remove == 'a' || remove == 'e' || remove == 'i' || remove == 'o' || remove == 'u'){
-                    count--;
-                }
-            max = Math.max(count , max );
-        }
-    return max;
+            left++;
+            maxvowel = Math.max(maxvowel , count);
+       }
+       return maxvowel;
     }
 }
