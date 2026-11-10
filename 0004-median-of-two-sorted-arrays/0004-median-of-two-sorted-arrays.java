@@ -1,32 +1,33 @@
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int m = nums1.length;
-        int n = nums2.length;
-        int[] merged = new int[m + n];
-        
-        int i = 0, j = 0, k = 0;
-        
-        while (i < m && j < n) {
-            if (nums1[i] < nums2[j]) {
-                merged[k++] = nums1[i++];
-            } else {
-                merged[k++] = nums2[j++];
+        int n = nums1.length;
+        int m = nums2.length;
+        int left = 0;
+        int right = 0;
+        int idx = 0;
+        int mergearr[] = new int[n + m];
+        while(left < n && right < m){
+            if(nums1[left] <= nums2[right]){
+                mergearr[idx++] = nums1[left++];
+            }else{
+                mergearr[idx++] = nums2[right++];
             }
         }
-        
-        while (i < m) {
-            merged[k++] = nums1[i++];
+        while(left < n){
+            mergearr[idx++] = nums1[left++];
         }
-        
-        while (j < n) {
-            merged[k++] = nums2[j++];
+        while(right < m){
+            mergearr[idx++] = nums2[right++];
         }
-        
-        int totalLength = merged.length;
-        if (totalLength % 2 == 1) {
-            return merged[totalLength / 2];
-        } else {
-            return (merged[totalLength / 2] + merged[totalLength / 2 - 1]) / 2.0;
+        for(int e : mergearr){
+            System.out.print(e + " ");
+        }
+        int total_length = mergearr.length;
+
+        if(total_length % 2 == 1){
+            return mergearr[total_length / 2];
+        }else{
+            return (mergearr[total_length / 2] + mergearr[total_length / 2 - 1]) / 2.0;
         }
     }
 }
