@@ -22,14 +22,31 @@
 
 // method -> 2 :- optimal solution 
 
+// class Solution {
+//     public int maxProfit(int[] prices) {
+//         int buyprice = Integer.MAX_VALUE;
+//         int profit = 0;
+//         for(int e : prices){
+//             buyprice = Math.min(e , buyprice);
+//             profit = Math.max(profit , e - buyprice);
+//         }
+//         return profit;
+//     }
+// }
+
+
+// method - 03 -> using dynamic programming 
+
 class Solution {
     public int maxProfit(int[] prices) {
-        int buyprice = Integer.MAX_VALUE;
-        int profit = 0;
-        for(int e : prices){
-            buyprice = Math.min(e , buyprice);
-            profit = Math.max(profit , e - buyprice);
+        int n = prices.length;
+        int dp[] = new int[n];
+        dp[0] = 0;
+        int buyprice = prices[0];
+        for(int i = 1; i < n; i++){
+             buyprice = Math.min( buyprice , prices[i]);
+            dp[i] = Math.max(dp[i - 1] , prices[i] - buyprice);
         }
-        return profit;
+        return dp[n - 1];
     }
 }
