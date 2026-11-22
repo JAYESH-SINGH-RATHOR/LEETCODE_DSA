@@ -1,5 +1,6 @@
 class Solution {
     public boolean validPath(int n, int[][] edges, int source, int destination) {
+        boolean visited[] = new boolean[n];
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
         for(int i = 0; i < n; i++){
             adj.add(new ArrayList<>());
@@ -10,10 +11,9 @@ class Solution {
             adj.get(u).add(v);
             adj.get(v).add(u);
         }
-        boolean visited[] = new boolean[n];
         Queue<Integer> q = new LinkedList<>();
-        q.add(source);
         visited[source] = true;
+        q.add(source);
         while(!q.isEmpty()){
             int curr = q.remove();
             if(curr == destination){
