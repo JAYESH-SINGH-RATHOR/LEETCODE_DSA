@@ -6,18 +6,18 @@ class Solution {
         int dr[] = {0 , 0 , 1 , -1};
         int dc[] = {-1 , 1 , 0 , 0 };
         Queue<int[]> q = new LinkedList<>();
-        int count = 0;
         int max = 0;
         for(int i = 0; i < n; i++){
             for(int j = 0; j < m; j++){
                 if(grid[i][j] == 1 && !visited[i][j]){
                     visited[i][j] = true;
+                    int count = 0;
                     q.add(new int[]{i , j});
-                    count++;
                     while(!q.isEmpty()){
                         int curr[] = q.remove();
                         int r = curr[0];
                         int c = curr[1];
+                        count++;
                         for(int k = 0; k < 4; k++){
                             int nr = r + dr[k];
                             int nc = c + dc[k];
@@ -27,9 +27,9 @@ class Solution {
                             }
                         }
                     }
+                max = Math.max(count , max);
                 }
             }
-                max = Math.max(count , max);
         }
         return max;
     }
