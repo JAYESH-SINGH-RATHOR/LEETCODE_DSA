@@ -2,42 +2,41 @@ class Solution {
     public int orangesRotting(int[][] grid) {
         int n = grid.length;
         int m = grid[0].length;
-        Queue<int[] > q = new LinkedList<>();
+        boolean visited[][] = new boolean[n][m];
+        Queue<int[]>q = new LinkedList<>();
+        int dr[] = {0 , 0 , 1 , -1};
+        int dc[] = {-1 , 1 , 0 , 0};
         int time = 0;
-        int freshOranges = 0;
-        for(int  i = 0; i < n; i++){
+        int freshoranges = 0;
+        for(int i = 0; i < n; i++){
             for(int j = 0; j < m; j++){
-                if(grid[i][j] == 2){
-                    q.add(new int[] {i , j});
-                }else if(grid[i][j] == 1){
-                    freshOranges++;
+                if(grid[i][j] == 1 && !visited[i][j]){
+                    freshoranges++;
+                }else if(grid[i][j] == 2 && !visited[i][j]){
+                    visited[i][j] = true;
+                    q.add(new int[]{i , j});
                 }
             }
         }
-        int directions[][] = {
-            {-1, 0}, // up
-            {1, 0}, // down
-            {0, -1}, // left 
-            {0, 1} // right
-        };
-        while(!q.isEmpty() && freshOranges > 0){
+        while(!q.isEmpty() && freshoranges > 0){
             int size = q.size();
-            for(int i = 0; i < size; i++){
+            for(int x = 0; x < size; x++){
                 int curr[] = q.remove();
                 int r = curr[0];
                 int c = curr[1];
-                for(int e[] : directions){
-                    int nr = r + e[0];
-                    int nc = c + e[1];
-                    if(nr >= 0 && nr < n && nc >= 0 && nc < m && grid[nr][nc] == 1){
+                for(int k = 0; k < 4; k++){
+                    int nr = r + dr[k];
+                    int nc = c + dc[k];
+                    if(nr >= 0 && nr < n && nc >= 0 && nc < m && !visited[nr][nc] && grid[nr][nc] == 1){
+                        visited[nr][nc] = true;
+                        q.add(new int[]{nr , nc});
                         grid[nr][nc] = 2;
-                        q.add(new int[]{nr ,nc});
-                        freshOranges--;
+                        freshoranges--;
                     }
                 }
             }
             time++;
         }
-        return freshOranges == 0 ? time :-1;
+        return freshoranges == 0 ? time : -1;
     }
 }
